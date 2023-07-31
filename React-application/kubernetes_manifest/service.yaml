@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-example-service
+  namespace: verona
+  labels:
+    app: react-example
+spec:
+  type: LoadBalancer
+  selector:
+    app: react-example
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

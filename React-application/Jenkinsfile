@@ -1,0 +1,53 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    dir ("React-application") {
+                        sh("echo Get current git hash")
+                        sh("printenv")
+                        gitHash = sh(script: "git rev-parse --short HEAD",returnStdout: true)
+                        
+                        sh("docker build --target runtime . -t veronaz/project_5_verona:${gitHash}")
+                        sh("docker build --target test . -t veronaz/project_5_verona_test:${gitHash}")
+                        
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    sh("echo Running unit test...")
+                    sh("docker run veronaz/project_5_verona_test:${gitHash}")
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    echo 'Uploading docker image ...'
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+                        sh("docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}")
+                        sh("docker push veronaz/project_5_verona:$gitHash")
+                    }
+                    echo 'Deploying....'
+                    echo 'Updating deployment manifest image tag...'
+                    dir ("React-application") {
+                            sh('sed -i "s/IMAGE_TAG/${gitHash}/g" kubernetes_manifest/deployment.yaml')
+                            withAWS(credentials: 'aws-iam', region: 'us-east-2') {
+                            script {
+                                sh ("aws eks update-kubeconfig --name veronafinal-Jo9Qo7th --region us-east-2")
+                                sh ("kubectl create namespace verona --dry-run -o yaml | kubectl apply -f -")
+                                sh ("kubectl apply -f ./kubernetes_manifest")
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+def gitHash=""

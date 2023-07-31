@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-example-deployment
+  namespace: verona
+  labels:
+    app: react-example
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: react-example
+  template:
+    metadata:
+      labels:
+        app: react-example
+    spec:
+      containers:
+      - name: react-example
+        image: veronaz/project_5_verona:IMAGE_TAG
+        ports:
+        - containerPort: 80
