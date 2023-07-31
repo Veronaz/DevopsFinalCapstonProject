@@ -40,10 +40,11 @@ Make sure the iam role has admin and eks access
 
 ### login Jenkins
 
-1. open a browser and go to  http://<jenkins EC2 public iPv4>:<port>
+1. open a browser and go to http://<jenkins EC2 public iPv4>:<port>
 2. follow the instruction and log into jenkins (change the localhost:<port> to the above public ip address)
 3. install 'kubernetes CLI' plugin
-4. add http://<jenkins EC2 public iPv4>:<port> to github repository > setting > webhook
+4. add 'http://<jenkins EC2 public iPv4>:<port>/github-webhook/' to github repository > setting > webhook and change type to 'application json' to trigger jenkins update automatically when github receives a push
+
 5. connect into Jenkins EC2 console and install kubectl cli; refer to 'https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html'; allow jenkins user `sudo cp kubectl /usr/sbin`
 
 
