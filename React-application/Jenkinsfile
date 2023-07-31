@@ -42,7 +42,7 @@ pipeline {
                                 sh ("aws eks update-kubeconfig --name veronafinal-Jo9Qo7th --region us-east-2")
                                 sh ("kubectl create namespace verona --dry-run -o yaml | kubectl apply -f -")
                                 sh ("kubectl apply -f ./kubernetes_manifest")
-                                sh ("kubectl get svc -f ./kubernetes_manifest/service.yaml")
+                                sh ("kubectl get -f ./kubernetes_manifest/service.yaml")
                             }
                         }
                     }
