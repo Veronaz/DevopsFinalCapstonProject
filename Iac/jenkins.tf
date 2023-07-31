@@ -76,6 +76,15 @@ resource "aws_iam_role_policy_attachment" "jenkins-vm-ssm-policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.jenkins.id
+  allocation_id = aws_eip.jenkins_eip.id
+}
+
+resource "aws_eip" "jenkins_eip" {
+  domain = "vpc"
+}
+
 resource "aws_instance" "jenkins" {
   ami                         = data.aws_ami.amazon-linux-2.id
   instance_type               = "t2.medium"
