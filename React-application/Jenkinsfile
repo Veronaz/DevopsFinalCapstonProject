@@ -36,7 +36,7 @@ pipeline {
                     echo 'Deploying....'
                     echo 'Updating deployment manifest image tag...'
                     dir ("React-application") {
-                            sh('sed -i "s/IMAGE_TAG/${gitHash}/g" kubernetes_manifest/deployment.yaml')
+                            sh("sed -i \"s/IMAGE_TAG/${gitHash}/g\" kubernetes_manifest/deployment.yaml")
                             withAWS(credentials: 'aws-iam', region: 'us-east-2') {
                             script {
                                 sh ("aws eks update-kubeconfig --name veronafinal-Jo9Qo7th --region us-east-2")
