@@ -8,7 +8,7 @@ pipeline {
                     dir ("React-application") {
                         sh("echo Get current git hash")
                         sh("printenv")
-                        gitHash = sh(script: "git rev-parse --short HEAD",returnStdout: true)
+                        gitHash = sh(script: "git rev-parse --short HEAD | tr -d '\n'",returnStdout: true)
                         
                         sh("docker build --target runtime . -t veronaz/project_5_verona:${gitHash}")
                         sh("docker build --target test . -t veronaz/project_5_verona_test:${gitHash}")
