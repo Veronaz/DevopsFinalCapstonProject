@@ -49,4 +49,8 @@ Make sure the iam role has admin and eks access
 
 
 
-* if no connection: paste in jenkins aws EC2 console`sudo service jenkins start`
+* if no connection: paste in jenkins aws EC2 console`sudo service jenkins start`..
+
+add notes
+
+
