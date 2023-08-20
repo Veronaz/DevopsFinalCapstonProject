@@ -51,6 +51,8 @@ Make sure the iam role has admin and eks access
 
 * if no connection: paste in jenkins aws EC2 console`sudo service jenkins start`..
 
-add notes
+## Architecture Diagram
 
+
+![Devops_final_diagram drawio](https://github.com/Veronaz/DevopsFinalCapstonProject/assets/115947471/a5810b69-e706-4338-ab4d-bad5ac100298)
 
