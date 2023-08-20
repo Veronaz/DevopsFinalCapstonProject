@@ -1,4 +1,5 @@
-# FinalCapstonProjectVerona
+# Devops Final Capston Project
+
 Toronto Institute of Data Science &amp; Technology Applied DevOps Engineering Diploma Program(Bootcamp) Final Capstone Project
 
 `git clone git@github.com:Veronaz/FinalCapstonProjectVerona.git`
