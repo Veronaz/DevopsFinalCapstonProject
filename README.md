@@ -1,8 +1,10 @@
-# Project Slides
 
-https://github.com/Veronaz/DevopsFinalCapstonProject/blob/main/DevOps%20Final%20Capstone%20Project%20Presentation.pdf
 
 # Devops Final Capston Project
+
+### Project Slides
+
+https://github.com/Veronaz/DevopsFinalCapstonProject/blob/main/DevOps%20Final%20Capstone%20Project%20Presentation.pdf
 
 Toronto Institute of Data Science &amp; Technology Applied DevOps Engineering Diploma Program(Bootcamp) Final Capstone Project
 
